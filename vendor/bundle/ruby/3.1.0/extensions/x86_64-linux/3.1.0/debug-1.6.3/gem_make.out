@@ -1,0 +1,16 @@
+current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
+/home/hera/.rbenv/versions/3.1.2/bin/ruby -I /home/hera/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221102-317533-epqf6m.rb extconf.rb
+creating Makefile
+
+current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
+make DESTDIR\= clean
+
+current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
+make DESTDIR\=
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20221102-317533-7cjseb/debug
