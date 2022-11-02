@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  block: one
+  week: one
+  technician: one
+
+two:
+  block: two
+  week: two
+  technician: two
