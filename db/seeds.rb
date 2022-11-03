@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -5,20 +7,24 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+# module V1
 
-Available.destroy_all
-Allocation.destroy_all
-Technician.destroy_all
-Week.destroy_all
-Block.destroy_all
-Day.destroy_all
-Contract.destroy_all
+Api::V1::Available.destroy_all
+Api::V1::Allocation.destroy_all
+Api::V1::Technician.destroy_all
+Api::V1::Week.destroy_all
+Api::V1::Block.destroy_all
+Api::V1::Day.destroy_all
+Api::V1::Contract.destroy_all
 
-ct1 = Contract.create!({
-                         name: 'Recorrido.cl',
-                         status: true
-                       })
-ct2 = Contract.create!(
+ct1 = Api::V1::Contract.create!(
+  {
+    name: 'Recorrido.cl',
+    status: true
+  }
+)
+
+ct2 = Api::V1::Contract.create!(
   {
     name: 'Fallabella',
     status: true
@@ -130,17 +136,17 @@ ct2.days.create!([{
 end
 
 52.times do |i|
-  Week.create!({ number: i })
+  Api::V1::Week.create!({ number: i })
 end
 
-Technician.create!([{
-                     name: 'Ernesto', color: '#E6AB4A'
-                   },
-                    {
-                      name: 'Barbara', color: '#DB6D98'
-                    },
-                    {
-                      name: 'Benjamin', color: '#669EEB'
-                    }])
+Api::V1::Technician.create!([{
+                              name: 'Ernesto', color: '#E6AB4A'
+                            },
+                             {
+                               name: 'Barbara', color: '#DB6D98'
+                             },
+                             {
+                               name: 'Benjamin', color: '#669EEB'
+                             }])
 
-p "Creados #{Contract.count} Contracts y dependientes"
+p "Creados #{Api::V1::Contract.count} Contracts y dependientes"

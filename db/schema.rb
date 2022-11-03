@@ -14,70 +14,70 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_220952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "allocations", force: :cascade do |t|
-    t.bigint "block_id", null: false
-    t.bigint "week_id", null: false
-    t.bigint "technician_id", null: false
+  create_table "api_v1_allocations", force: :cascade do |t|
+    t.bigint "api_v1_block_id", null: false
+    t.bigint "api_v1_week_id", null: false
+    t.bigint "api_v1_technician_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["block_id"], name: "index_allocations_on_block_id"
-    t.index ["technician_id"], name: "index_allocations_on_technician_id"
-    t.index ["week_id"], name: "index_allocations_on_week_id"
+    t.index ["api_v1_block_id"], name: "index_api_v1_allocations_on_api_v1_block_id"
+    t.index ["api_v1_technician_id"], name: "index_api_v1_allocations_on_api_v1_technician_id"
+    t.index ["api_v1_week_id"], name: "index_api_v1_allocations_on_api_v1_week_id"
   end
 
-  create_table "availables", force: :cascade do |t|
-    t.bigint "block_id", null: false
-    t.bigint "week_id", null: false
-    t.bigint "technician_id", null: false
+  create_table "api_v1_availables", force: :cascade do |t|
+    t.bigint "api_v1_block_id", null: false
+    t.bigint "api_v1_week_id", null: false
+    t.bigint "api_v1_technician_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["block_id"], name: "index_availables_on_block_id"
-    t.index ["technician_id"], name: "index_availables_on_technician_id"
-    t.index ["week_id"], name: "index_availables_on_week_id"
+    t.index ["api_v1_block_id"], name: "index_api_v1_availables_on_api_v1_block_id"
+    t.index ["api_v1_technician_id"], name: "index_api_v1_availables_on_api_v1_technician_id"
+    t.index ["api_v1_week_id"], name: "index_api_v1_availables_on_api_v1_week_id"
   end
 
-  create_table "blocks", force: :cascade do |t|
+  create_table "api_v1_blocks", force: :cascade do |t|
     t.integer "hour"
-    t.bigint "day_id", null: false
+    t.bigint "api_v1_day_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["day_id"], name: "index_blocks_on_day_id"
+    t.index ["api_v1_day_id"], name: "index_api_v1_blocks_on_api_v1_day_id"
   end
 
-  create_table "contracts", force: :cascade do |t|
+  create_table "api_v1_contracts", force: :cascade do |t|
     t.string "name"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "days", force: :cascade do |t|
+  create_table "api_v1_days", force: :cascade do |t|
     t.string "name"
-    t.bigint "contract_id", null: false
+    t.bigint "api_v1_contract_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contract_id"], name: "index_days_on_contract_id"
+    t.index ["api_v1_contract_id"], name: "index_api_v1_days_on_api_v1_contract_id"
   end
 
-  create_table "technicians", force: :cascade do |t|
+  create_table "api_v1_technicians", force: :cascade do |t|
     t.string "name"
     t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "weeks", force: :cascade do |t|
+  create_table "api_v1_weeks", force: :cascade do |t|
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "allocations", "blocks"
-  add_foreign_key "allocations", "technicians"
-  add_foreign_key "allocations", "weeks"
-  add_foreign_key "availables", "blocks"
-  add_foreign_key "availables", "technicians"
-  add_foreign_key "availables", "weeks"
-  add_foreign_key "blocks", "days"
-  add_foreign_key "days", "contracts"
+  add_foreign_key "api_v1_allocations", "api_v1_blocks"
+  add_foreign_key "api_v1_allocations", "api_v1_technicians"
+  add_foreign_key "api_v1_allocations", "api_v1_weeks"
+  add_foreign_key "api_v1_availables", "api_v1_blocks"
+  add_foreign_key "api_v1_availables", "api_v1_technicians"
+  add_foreign_key "api_v1_availables", "api_v1_weeks"
+  add_foreign_key "api_v1_blocks", "api_v1_days"
+  add_foreign_key "api_v1_days", "api_v1_contracts"
 end
