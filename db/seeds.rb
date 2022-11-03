@@ -54,31 +54,31 @@ ct1.days.create!([{
                   }])
 
 (17..21).each do |i|
-  ct1.days.find_by_name('lunes').blocks.create!(
+  ct1.days.find_by(name: 'lunes').blocks.create!(
     hour: i
   )
 
-  ct1.days.find_by_name('martes').blocks.create!(
+  ct1.days.find_by(name: 'martes').blocks.create!(
     hour: i
   )
 
-  ct1.days.find_by_name('miercoles').blocks.create!(
+  ct1.days.find_by(name: 'miercoles').blocks.create!(
     hour: i
   )
 
-  ct1.days.find_by_name('jueves').blocks.create!(
+  ct1.days.find_by(name: 'jueves').blocks.create!(
     hour: i
   )
 
-  ct1.days.find_by_name('viernes').blocks.create!(
+  ct1.days.find_by(name: 'viernes').blocks.create!(
     hour: i
   )
 
-  ct1.days.find_by_name('sabado').blocks.create!(
+  ct1.days.find_by(name: 'sabado').blocks.create!(
     hour: i
   )
 
-  ct1.days.find_by_name('domingo').blocks.create!(
+  ct1.days.find_by(name: 'domingo').blocks.create!(
     hour: i
   )
 end
@@ -106,31 +106,31 @@ ct2.days.create!([{
                   }])
 
 (17..21).each do |i|
-  ct2.days.find_by_name('lunes').blocks.create!(
+  ct2.days.find_by(name: 'lunes').blocks.create!(
     hour: i
   )
 
-  ct2.days.find_by_name('martes').blocks.create!(
+  ct2.days.find_by(name: 'martes').blocks.create!(
     hour: i
   )
 
-  ct2.days.find_by_name('miercoles').blocks.create!(
+  ct2.days.find_by(name: 'miercoles').blocks.create!(
     hour: i
   )
 
-  ct2.days.find_by_name('jueves').blocks.create!(
+  ct2.days.find_by(name: 'jueves').blocks.create!(
     hour: i
   )
 
-  ct2.days.find_by_name('viernes').blocks.create!(
+  ct2.days.find_by(name: 'viernes').blocks.create!(
     hour: i
   )
 
-  ct2.days.find_by_name('sabado').blocks.create!(
+  ct2.days.find_by(name: 'sabado').blocks.create!(
     hour: i
   )
 
-  ct2.days.find_by_name('domingo').blocks.create!(
+  ct2.days.find_by(name: 'domingo').blocks.create!(
     hour: i
   )
 end
@@ -148,5 +148,11 @@ Api::V1::Technician.create!([{
                              {
                                name: 'Benjamin', color: '#669EEB'
                              }])
+
+block = ct1.days.find_by(name: 'lunes').blocks.first
+week = Api::V1::Week.find_by(number: 20)
+technician = Api::V1::Technician.find_by(name: 'Barbara')
+
+Api::V1::Available.create!(block:, week:, technician:)
 
 p "Creados #{Api::V1::Contract.count} Contracts y dependientes"
