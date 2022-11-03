@@ -3,6 +3,7 @@
 module Api
   module V1
     class WeeksController < ApplicationController
+      
     end
   end
 end

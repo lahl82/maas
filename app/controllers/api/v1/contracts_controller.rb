@@ -5,7 +5,7 @@ module Api
     # clase Contratos de Servicios de MaaS
     class ContractsController < ApplicationController
       def index
-        @contracts = Contract.all
+        @contracts = Contract.where(status: true)
         render json: @contracts
       end
     end

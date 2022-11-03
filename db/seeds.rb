@@ -20,14 +20,14 @@ Api::V1::Contract.destroy_all
 ct1 = Api::V1::Contract.create!(
   {
     name: 'Recorrido.cl',
-    status: true
+    status: 'true'
   }
 )
 
 ct2 = Api::V1::Contract.create!(
   {
     name: 'Fallabella',
-    status: true
+    status: 'true'
   }
 )
 
