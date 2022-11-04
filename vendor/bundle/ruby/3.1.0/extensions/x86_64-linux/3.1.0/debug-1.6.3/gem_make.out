@@ -1,5 +1,5 @@
 current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
-/home/hera/.rbenv/versions/3.1.2/bin/ruby -I /home/hera/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221102-317533-epqf6m.rb extconf.rb
+/home/hera/.rbenv/versions/3.1.2/bin/ruby -I /home/hera/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221104-17545-gar6ym.rb extconf.rb
 creating Makefile
 
 current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
@@ -13,4 +13,4 @@ linking shared-object debug/debug.so
 
 current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/debug-1.6.3/ext/debug
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 debug.so ./.gem.20221102-317533-7cjseb/debug
+/usr/bin/install -c -m 0755 debug.so ./.gem.20221104-17545-uscxu9/debug

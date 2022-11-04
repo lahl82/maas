@@ -1,5 +1,5 @@
 current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/pg-1.4.4/ext
-/home/hera/.rbenv/versions/3.1.2/bin/ruby -I /home/hera/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221102-317533-ag9pqt.rb extconf.rb
+/home/hera/.rbenv/versions/3.1.2/bin/ruby -I /home/hera/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221104-17545-q19qum.rb extconf.rb
 Calling libpq with GVL unlocked
 checking for pg_config... yes
 Using config values from /usr/bin/pg_config
@@ -74,5 +74,5 @@ linking shared-object pg_ext.so
 
 current directory: /home/hera/recorrido-test/maas/vendor/bundle/ruby/3.1.0/gems/pg-1.4.4/ext
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 pg_ext.so ./.gem.20221102-317533-skdbmg
+/usr/bin/install -c -m 0755 pg_ext.so ./.gem.20221104-17545-vgcddu
 installing pg_ext libraries
