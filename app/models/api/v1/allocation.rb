@@ -6,6 +6,10 @@ module Api
       belongs_to :block, foreign_key: 'api_v1_block_id'
       belongs_to :week, foreign_key: 'api_v1_week_id'
       belongs_to :technician, foreign_key: 'api_v1_technician_id'
+
+      def generate_allocation
+          # por definir aun
+      end
     end
   end
 end
