@@ -26,7 +26,7 @@ ct1 = Api::V1::Contract.create!(
 
 ct2 = Api::V1::Contract.create!(
   {
-    name: 'Fallabella',
+    name: 'Falabella',
     status: 'true'
   }
 )
@@ -135,7 +135,7 @@ ct2.days.create!([{
   )
 end
 
-52.times do |i|
+(1..52).each do |i|
   Api::V1::Week.create!({ number: i })
 end
 
@@ -150,9 +150,15 @@ Api::V1::Technician.create!([{
                              }])
 
 block = ct1.days.find_by(name: 'lunes').blocks.first
-week = Api::V1::Week.find_by(number: 20)
+week = Api::V1::Week.find_by(number: 3)
 technician = Api::V1::Technician.find_by(name: 'Barbara')
 
-Api::V1::Available.create!(block:, week:, technician:)
+Api::V1::Available.create!(block:, week:, technician:, contract: ct1)
+
+block = ct2.days.find_by(name: 'martes').blocks.first
+week = Api::V1::Week.find_by(number: 48)
+technician = Api::V1::Technician.find_by(name: 'Barbara')
+
+Api::V1::Available.create!(block:, week:, technician:, contract: ct2)
 
 p "Creados #{Api::V1::Contract.count} Contracts y dependientes"

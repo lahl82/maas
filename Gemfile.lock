@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: d221c964bf5c096567322cb52484fb46276e9612
+  branch: main
+  specs:
+    faker (3.0.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -76,6 +84,11 @@ GEM
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
     erubi (1.11.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -174,11 +187,13 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  factory_bot_rails
+  faker!
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.2, >= 7.0.2.4)
-  rspec-rails (>= 3.9.0)
+  rspec-rails
   tzinfo-data
 
 RUBY VERSION
