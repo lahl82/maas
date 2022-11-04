@@ -149,16 +149,101 @@ Api::V1::Technician.create!([{
                                name: 'Benjamin', color: '#669EEB'
                              }])
 
-block = ct1.days.find_by(name: 'lunes').blocks.first
-week = Api::V1::Week.find_by(number: 3)
-technician = Api::V1::Technician.find_by(name: 'Barbara')
+block_lu17 = ct1.days.find_by(name: 'lunes').blocks.find_by(hour: 17)
+block_lu18 = ct1.days.find_by(name: 'lunes').blocks.find_by(hour: 18)
+block_lu19 = ct1.days.find_by(name: 'lunes').blocks.find_by(hour: 19)
+block_ma17 = ct1.days.find_by(name: 'martes').blocks.find_by(hour: 17)
+block_ma18 = ct1.days.find_by(name: 'martes').blocks.find_by(hour: 18)
+block_ma19 = ct1.days.find_by(name: 'martes').blocks.find_by(hour: 19)
+block_ma20 = ct1.days.find_by(name: 'martes').blocks.find_by(hour: 20)
+block_mi17 = ct1.days.find_by(name: 'miercoles').blocks.find_by(hour: 17)
+block_mi18 = ct1.days.find_by(name: 'miercoles').blocks.find_by(hour: 18)
+block_mi19 = ct1.days.find_by(name: 'miercoles').blocks.find_by(hour: 19)
+block_mi20 = ct1.days.find_by(name: 'miercoles').blocks.find_by(hour: 20)
+block_mi21 = ct1.days.find_by(name: 'miercoles').blocks.find_by(hour: 21)
+block_ju17 = ct1.days.find_by(name: 'jueves').blocks.find_by(hour: 17)
+block_ju18 = ct1.days.find_by(name: 'jueves').blocks.find_by(hour: 18)
+block_ju19 = ct1.days.find_by(name: 'jueves').blocks.find_by(hour: 19)
+block_ju20 = ct1.days.find_by(name: 'jueves').blocks.find_by(hour: 20)
+block_vi17 = ct1.days.find_by(name: 'viernes').blocks.find_by(hour: 17)
+block_vi18 = ct1.days.find_by(name: 'viernes').blocks.find_by(hour: 18)
+block_sa21 = ct1.days.find_by(name: 'sabado').blocks.find_by(hour: 21)
 
-Api::V1::Available.create!(block:, week:, technician:, contract: ct1)
+week_3 = Api::V1::Week.find_by(number: 3)
+week_4 = Api::V1::Week.find_by(number: 4)
 
-block = ct2.days.find_by(name: 'martes').blocks.first
-week = Api::V1::Week.find_by(number: 48)
-technician = Api::V1::Technician.find_by(name: 'Barbara')
+technician_bar = Api::V1::Technician.find_by(name: 'Barbara')
+technician_ern = Api::V1::Technician.find_by(name: 'Ernesto')
+technician_ben = Api::V1::Technician.find_by(name: 'Benjamin')
 
-Api::V1::Available.create!(block:, week:, technician:, contract: ct2)
+##############################################################
+# Disponibilidad de Barbara - 12 horas la semana 3 contrato 1#
+# lunes
+Api::V1::Available.create!(block: block_lu17, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_lu18, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_lu19, week: week_3, technician: technician_bar, contract: ct1)
+# martes
+Api::V1::Available.create!(block: block_ma17, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_ma18, week: week_3, technician: technician_bar, contract: ct1)
+# miercoles
+Api::V1::Available.create!(block: block_mi17, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_mi18, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_mi19, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_mi20, week: week_3, technician: technician_bar, contract: ct1)
+# jueves
+Api::V1::Available.create!(block: block_ju19, week: week_3, technician: technician_bar, contract: ct1)
+Api::V1::Available.create!(block: block_ju20, week: week_3, technician: technician_bar, contract: ct1)
+# sabado
+Api::V1::Available.create!(block: block_sa21, week: week_3, technician: technician_bar, contract: ct1)
 
-p "Creados #{Api::V1::Contract.count} Contracts y dependientes"
+##############################################################
+# Disponibilidad de Ernesto - 11 horas la semana 3 contrato 1#
+# lunes
+Api::V1::Available.create!(block: block_lu17, week: week_3, technician: technician_ern, contract: ct1)
+Api::V1::Available.create!(block: block_lu18, week: week_3, technician: technician_ern, contract: ct1)
+Api::V1::Available.create!(block: block_lu19, week: week_3, technician: technician_ern, contract: ct1)
+# martes
+Api::V1::Available.create!(block: block_ma19, week: week_3, technician: technician_ern, contract: ct1)
+Api::V1::Available.create!(block: block_ma20, week: week_3, technician: technician_ern, contract: ct1)
+# miercoles
+Api::V1::Available.create!(block: block_mi19, week: week_3, technician: technician_ern, contract: ct1)
+Api::V1::Available.create!(block: block_mi20, week: week_3, technician: technician_ern, contract: ct1)
+Api::V1::Available.create!(block: block_mi21, week: week_3, technician: technician_ern, contract: ct1)
+# jueves
+Api::V1::Available.create!(block: block_ju18, week: week_3, technician: technician_ern, contract: ct1)
+Api::V1::Available.create!(block: block_ju19, week: week_3, technician: technician_ern, contract: ct1)
+# sabado
+Api::V1::Available.create!(block: block_sa21, week: week_3, technician: technician_ern, contract: ct1)
+
+##############################################################
+# Disponibilidad de Benjamin - 15 horas la semana 3 contrato 1#
+# lunes
+Api::V1::Available.create!(block: block_lu17, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_lu18, week: week_3, technician: technician_ben, contract: ct1)
+# martes
+Api::V1::Available.create!(block: block_ma18, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_ma19, week: week_3, technician: technician_ben, contract: ct1)
+# miercoles
+Api::V1::Available.create!(block: block_mi17, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_mi18, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_mi19, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_mi20, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_mi21, week: week_3, technician: technician_ben, contract: ct1)
+# jueves
+Api::V1::Available.create!(block: block_ju17, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_ju18, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_ju19, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_ju20, week: week_3, technician: technician_ben, contract: ct1)
+# viernes
+Api::V1::Available.create!(block: block_vi17, week: week_3, technician: technician_ben, contract: ct1)
+Api::V1::Available.create!(block: block_vi18, week: week_3, technician: technician_ben, contract: ct1)
+
+p 'Creados los siguientes registros:'
+p "#{Api::V1::Contract.count} Contracts"
+p "#{Api::V1::Day.count} Days"
+p "#{Api::V1::Block.count} Blocks"
+p "#{Api::V1::Week.count} Weeks"
+p "#{Api::V1::Technician.count} Technicians"
+p "#{Api::V1::Available.count} Availables"
+p "#{Api::V1::Allocation.count} Allocations"
+p 'Seeding finalizada'
