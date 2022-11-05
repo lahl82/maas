@@ -6,6 +6,7 @@ module Api
     class Contract < ApplicationRecord
       has_many :days, foreign_key: 'api_v1_contract_id'
       has_many :availables, foreign_key: 'api_v1_contract_id'
+      has_many :allocations, foreign_key: 'api_v1_contract_id'
 
       # Hash de Dias y Horas asociadas a Contrato
       def requirement

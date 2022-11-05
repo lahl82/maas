@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_220952) do
     t.bigint "api_v1_technician_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "api_v1_contract_id", null: false
+    t.index ["api_v1_contract_id"], name: "index_api_v1_allocations_on_api_v1_contract_id"
     t.index ["api_v1_block_id"], name: "index_api_v1_allocations_on_api_v1_block_id"
     t.index ["api_v1_technician_id"], name: "index_api_v1_allocations_on_api_v1_technician_id"
     t.index ["api_v1_week_id"], name: "index_api_v1_allocations_on_api_v1_week_id"

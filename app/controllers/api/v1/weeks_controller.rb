@@ -5,8 +5,17 @@ module Api
     # Controlador para retornar las semanas disponibles para consultar
     class WeeksController < ApplicationController
       def index
-        @weeks = Weeks.range(-5, 5)
-        render json: @weeks
+        contract = Contract.find_by(id: week_params.fetch(:contract_id))
+        technician = Technician.find_by(id: week_params.fetch(:technician_id))
+
+        weeks = Week.new.range(contract, technician)
+        render json: weeks
+      end
+
+      private
+
+      def week_params
+        params.permit(:contract_id, :technician_id)
       end
     end
   end

@@ -7,9 +7,10 @@ module Api
       belongs_to :block, foreign_key: 'api_v1_block_id'
       belongs_to :week, foreign_key: 'api_v1_week_id'
       belongs_to :technician, foreign_key: 'api_v1_technician_id'
+      belongs_to :contract, foreign_key: 'api_v1_contract_id'
 
       # Genera las Allocations segun la Availability de cada tecnico
-      def generate(contract, week)
+      def self.generate(contract, week)
         requirements = contract.requirement
 
         technicians = Technician.candidates(contract, week)
@@ -19,12 +20,33 @@ module Api
           availabilities.merge!({ technician.id => technician.availability(contract, week) })
         end
 
-        allocate(requirements, availabilities, technicians)
+        allocated = allocate_techs(requirements, availabilities, technicians)
+
+        delete_previous_allocation(contract, week)
+        register_allocation(allocated)
+        list_hours(contract, week)
       end
 
-      private
+      def self.list_hours(contract, week)
+        result = []
 
-      def allocate(requirements, availabilities, technicians)
+        allocations = Allocation.where(contract:, week:)
+
+        allocations.each do |allocation|
+          result.push({ day_name: allocation.block.day.name,
+                        day_id: allocation.block.day.id,
+                        block_hour: allocation.block.hour,
+                        block_id: allocation.api_v1_block_id,
+                        week_id: allocation.api_v1_week_id,
+                        week_number: allocation.week.number,
+                        technician_id: allocation.api_v1_technician_id,
+                        contract_id: allocation.api_v1_contract_id })
+        end
+
+        result
+      end
+
+      def self.allocate_techs(requirements, availabilities, technicians)
         days = days_required(requirements)
         week_id = availabilities.first[1].first.fetch(:week_id)
         contract_id = availabilities.first[1].first.fetch(:contract_id)
@@ -69,16 +91,31 @@ module Api
         allocated
       end
 
-      def days_required(requirements)
+      def self.days_required(requirements)
         requirements.map { |e| e[:day_id] }.uniq
       end
 
-      def hours_required(requirements, day_id)
+      def self.hours_required(requirements, day_id)
         requirements.filter { |e| e[:day_id] == day_id }.map { |e| e[:block_id] }
       end
 
-      def hours_technician(availability, day_id)
+      def self.hours_technician(availability, day_id)
         availability.filter { |e| e[:day_id] == day_id }.map { |e| e[:block_id] }
+      end
+
+      def self.register_allocation(allocated)
+        allocated.each do |e|
+          allocation = Allocation.new api_v1_block_id: e[:block_id], api_v1_week_id: e[:week_id],
+                                      api_v1_technician_id: e[:technician_id], api_v1_contract_id: e[:contract_id]
+
+          allocation.save!
+        end
+
+        allocated
+      end
+
+      def self.delete_previous_allocation(contract, week)
+        prev_allocation = Allocation.where(contract:, week:).destroy_all
       end
     end
   end
