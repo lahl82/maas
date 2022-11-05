@@ -17,13 +17,29 @@ module Api
 
         availables.each do |available|
           result.push({ day_name: available.block.day.name,
+                        day_id: available.block.day.id,
                         block_hour: available.block.hour,
-                        week_id: available.api_v1_week_id,
                         block_id: available.api_v1_block_id,
-                        technician_id: available.api_v1_technician_id})
+                        week_id: available.api_v1_week_id,
+                        week_number: available.week.number,
+                        technician_id: available.api_v1_technician_id,
+                        contract_id: contract.id })
         end
 
         result
+      end
+
+      # Determina los Technicians que tienen horas disponibles registradas para un contrato y semana especifica
+      def self.candidates(contract, week)
+        tech_ids = Available.where(contract:, week:).distinct.pluck(:api_v1_technician_id)
+
+        technicians = []
+
+        tech_ids.each do |tech_id|
+          technicians.push(Technician.find_by(id: tech_id))
+        end
+
+        technicians
       end
     end
   end

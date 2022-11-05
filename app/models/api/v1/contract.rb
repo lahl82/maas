@@ -13,7 +13,7 @@ module Api
 
         days.each do |day|
           day.blocks.each do |block|
-            result.push({ day_name: day.name, block_hour: block.hour, block_id: block.id })
+            result.push({ day_id: day.id, day_name: day.name, block_hour: block.hour, block_id: block.id })
           end
         end
 
