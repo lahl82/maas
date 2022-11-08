@@ -10,7 +10,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :allocations
       resources :availables
-      resources :contracts
+      resources :contracts do
+        resources :days do
+        end
+      end
+      resources :days do
+        resources :blocks
+      end
       resources :technicians
       resources :weeks
     end

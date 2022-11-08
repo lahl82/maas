@@ -176,7 +176,6 @@ technician_bar = Api::V1::Technician.find_by(name: 'Barbara')
 technician_ern = Api::V1::Technician.find_by(name: 'Ernesto')
 technician_ben = Api::V1::Technician.find_by(name: 'Benjamin')
 
-
 # CONTRACT 1 - WEEK 3
 ##############################################################
 # Disponibilidad de Barbara - 12 horas la semana 3 contrato 1#
@@ -239,6 +238,30 @@ Api::V1::Available.create!(block: block_ju20, week: week_3, technician: technici
 # viernes
 Api::V1::Available.create!(block: block_vi17, week: week_3, technician: technician_ben, contract: ct1)
 Api::V1::Available.create!(block: block_vi18, week: week_3, technician: technician_ben, contract: ct1)
+
+
+
+block_lu17 = ct2.days.find_by(name: 'lunes').blocks.find_by(hour: 17)
+block_lu18 = ct2.days.find_by(name: 'lunes').blocks.find_by(hour: 18)
+block_lu19 = ct2.days.find_by(name: 'lunes').blocks.find_by(hour: 19)
+block_ma17 = ct2.days.find_by(name: 'martes').blocks.find_by(hour: 17)
+block_ma18 = ct2.days.find_by(name: 'martes').blocks.find_by(hour: 18)
+block_ma19 = ct2.days.find_by(name: 'martes').blocks.find_by(hour: 19)
+block_ma20 = ct2.days.find_by(name: 'martes').blocks.find_by(hour: 20)
+block_mi17 = ct2.days.find_by(name: 'miercoles').blocks.find_by(hour: 17)
+block_mi18 = ct2.days.find_by(name: 'miercoles').blocks.find_by(hour: 18)
+block_mi19 = ct2.days.find_by(name: 'miercoles').blocks.find_by(hour: 19)
+block_mi20 = ct2.days.find_by(name: 'miercoles').blocks.find_by(hour: 20)
+block_mi21 = ct2.days.find_by(name: 'miercoles').blocks.find_by(hour: 21)
+block_ju17 = ct2.days.find_by(name: 'jueves').blocks.find_by(hour: 17)
+block_ju18 = ct2.days.find_by(name: 'jueves').blocks.find_by(hour: 18)
+block_ju19 = ct2.days.find_by(name: 'jueves').blocks.find_by(hour: 19)
+block_ju20 = ct2.days.find_by(name: 'jueves').blocks.find_by(hour: 20)
+block_vi17 = ct2.days.find_by(name: 'viernes').blocks.find_by(hour: 17)
+block_vi18 = ct2.days.find_by(name: 'viernes').blocks.find_by(hour: 18)
+block_sa21 = ct2.days.find_by(name: 'sabado').blocks.find_by(hour: 21)
+
+
 
 # CONTRACT 2 - WEEK 3
 ##############################################################

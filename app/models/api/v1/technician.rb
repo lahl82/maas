@@ -8,6 +8,24 @@ module Api
       has_many :allocations, foreign_key: 'api_v1_technician_id'
 
       # Hash de disponibilidad de Tecnico para un contrato y semana dados
+      def availability_per_day(week, day)
+        result = []
+
+        blocks = Day.find_by(id: day).blocks.pluck(:id)
+
+        availables = Available.where(week:, technician: self, block: blocks)
+
+        availables.each do |available|
+          result.push({ block_id: available.api_v1_block_id,
+                        week_id: available.api_v1_week_id,
+                        technician_id: available.api_v1_technician_id,
+                        contract_id: available.api_v1_contract_id })
+        end
+
+        result
+      end
+
+      # Hash de disponibilidad de Tecnico para un contrato y semana dados
       def availability(contract, week)
         result = []
 

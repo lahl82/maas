@@ -11,11 +11,11 @@ module Api
         days_before = 5
         days_after = 5
 
-        if technician.blank?
-          last_week = Available.where(contract:).last&.week&.number
-        else
-          last_week = Available.where(contract:, technician:).last&.week&.number
-        end
+        last_week = if technician.blank?
+                      Available.where(contract:).last&.week&.number
+                    else
+                      Available.where(contract:, technician:).last&.week&.number
+                    end
 
         if last_week.nil?
           start = current_calendar_week
