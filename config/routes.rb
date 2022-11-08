@@ -11,8 +11,8 @@ Rails.application.routes.draw do
       resources :allocations
       resources :availables
       resources :contracts do
-        resources :days do
-        end
+        resources :days
+        resources :technicians
       end
       resources :days do
         resources :blocks

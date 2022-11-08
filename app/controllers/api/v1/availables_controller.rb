@@ -5,10 +5,10 @@ module Api
     class AvailablesController < ApplicationController
       def index
         technician = Technician.find_by(id: available_params.fetch(:technician_id))
-        week = available_params.fetch(:week_id)
-        day = available_params.fetch(:day_id)
+        wk_id = available_params.fetch(:week_id)
+        dy_id = available_params.fetch(:day_id)
 
-        response = technician.availability_per_day(week, day)
+        response = technician.availability_per_day(wk_id, dy_id)
         render json: response
       end
 

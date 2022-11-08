@@ -10,27 +10,29 @@ module Api
       belongs_to :contract, foreign_key: 'api_v1_contract_id'
 
       # Genera las Allocations segun la Availability de cada tecnico
-      def self.generate(contract, week)
+      def self.generate(ct_id, wk_id)
+        contract = Contract.find_by(id: allocation_params.fetch(:contract_id))
+
         requirements = contract.requirement
 
-        technicians = Technician.candidates(contract, week)
+        technicians = Technician.candidates(ct_id, wk_id)
         availabilities = {}
 
         technicians.each do |technician|
-          availabilities.merge!({ technician.id => technician.availability(contract, week) })
+          availabilities.merge!({ technician.id => technician.availability(ct_id, wk_id) })
         end
 
         allocated = allocate_techs(requirements, availabilities, technicians)
 
-        delete_previous_allocation(contract, week)
+        delete_previous_allocation(ct_id, wk_id)
         register_allocation(allocated)
-        list_hours(contract, week)
+        list_hours(ct_id, wk_id)
       end
 
-      def self.list_hours(contract, week)
+      def self.list_hours(ct_id, wk_id)
         result = []
 
-        allocations = Allocation.where(contract:, week:)
+        allocations = Allocation.where(api_v1_contract_id: ct_id, api_v1_week_id: wk_id)
 
         allocations.each do |allocation|
           result.push({ day_name: allocation.block.day.name,
@@ -114,8 +116,8 @@ module Api
         allocated
       end
 
-      def self.delete_previous_allocation(contract, week)
-        prev_allocation = Allocation.where(contract:, week:).destroy_all
+      def self.delete_previous_allocation(ct_id, wk_id)
+        Allocation.where(api_v1_contract_id: ct_id, api_v1_week_id: wk_id).destroy_all
       end
     end
   end

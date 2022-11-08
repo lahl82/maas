@@ -13,10 +13,10 @@ module Api
       end
 
       def create
-        contract = Contract.find_by(id: allocation_params.fetch(:contract_id))
-        week = Week.find_by(id: allocation_params.fetch(:week_id))
+        ct_id = allocation_params.fetch(:contract_id)
+        wk_id = allocation_params.fetch(:week_id)
 
-        response = Allocation.generate(contract, week)
+        response = Allocation.generate(ct_id, wk_id)
         render json: response
       end
 
