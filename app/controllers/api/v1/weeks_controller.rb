@@ -6,7 +6,7 @@ module Api
     class WeeksController < ApplicationController
       def index
         contract = Contract.find_by(id: week_params.fetch(:contract_id))
-        technician = Technician.find_by(id: week_params.fetch(:technician_id))
+        technician = Technician.find_by(id: week_params[:technician_id])
 
         weeks = Week.new.range(contract, technician)
         render json: weeks

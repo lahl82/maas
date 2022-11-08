@@ -10,7 +10,12 @@ module Api
       def range(contract, technician)
         days_before = 5
         days_after = 5
-        last_week = Available.where(contract:, technician:).last&.week&.number
+
+        if technician.blank?
+          last_week = Available.where(contract:).last&.week&.number
+        else
+          last_week = Available.where(contract:, technician:).last&.week&.number
+        end
 
         if last_week.nil?
           start = current_calendar_week

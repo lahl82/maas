@@ -11,6 +11,8 @@ module Api
       def availability(contract, week)
         result = []
 
+        Available.where(contract:, week:, technician: self)
+
         availables = Available.where(contract:, week:, technician: self)
 
         p availables.size
