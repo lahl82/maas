@@ -18,7 +18,9 @@ Rails.application.routes.draw do
         resources :blocks
       end
       resources :technicians
-      resources :weeks
+      resources :weeks do
+        resources :availables
+      end
     end
   end
 end
