@@ -176,6 +176,14 @@ technician_bar = Api::V1::Technician.find_by(name: 'Barbara')
 technician_ern = Api::V1::Technician.find_by(name: 'Ernesto')
 technician_ben = Api::V1::Technician.find_by(name: 'Benjamin')
 
+Api::V1::TechnicianAssociation.create!(technician: technician_bar, contract: ct1)
+Api::V1::TechnicianAssociation.create!(technician: technician_ern, contract: ct1)
+Api::V1::TechnicianAssociation.create!(technician: technician_ben, contract: ct1)
+
+Api::V1::TechnicianAssociation.create!(technician: technician_bar, contract: ct2)
+Api::V1::TechnicianAssociation.create!(technician: technician_ern, contract: ct2)
+Api::V1::TechnicianAssociation.create!(technician: technician_ben, contract: ct2)
+
 # CONTRACT 1 - WEEK 3
 ##############################################################
 # Disponibilidad de Barbara - 12 horas la semana 3 contrato 1#
@@ -239,8 +247,6 @@ Api::V1::Available.create!(block: block_ju20, week: week_3, technician: technici
 Api::V1::Available.create!(block: block_vi17, week: week_3, technician: technician_ben, contract: ct1)
 Api::V1::Available.create!(block: block_vi18, week: week_3, technician: technician_ben, contract: ct1)
 
-
-
 block_lu17 = ct2.days.find_by(name: 'lunes').blocks.find_by(hour: 17)
 block_lu18 = ct2.days.find_by(name: 'lunes').blocks.find_by(hour: 18)
 block_lu19 = ct2.days.find_by(name: 'lunes').blocks.find_by(hour: 19)
@@ -260,7 +266,6 @@ block_ju20 = ct2.days.find_by(name: 'jueves').blocks.find_by(hour: 20)
 block_vi17 = ct2.days.find_by(name: 'viernes').blocks.find_by(hour: 17)
 block_vi18 = ct2.days.find_by(name: 'viernes').blocks.find_by(hour: 18)
 block_sa21 = ct2.days.find_by(name: 'sabado').blocks.find_by(hour: 21)
-
 
 
 # CONTRACT 2 - WEEK 3
@@ -334,4 +339,5 @@ p "#{Api::V1::Week.count} Weeks"
 p "#{Api::V1::Technician.count} Technicians"
 p "#{Api::V1::Available.count} Availables"
 p "#{Api::V1::Allocation.count} Allocations"
+p "#{Api::V1::TechnicianAssociation.count} TechnicianAssociations"
 p 'Seeding finalizada'

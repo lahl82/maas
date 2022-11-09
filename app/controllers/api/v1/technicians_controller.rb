@@ -6,17 +6,16 @@ module Api
     class TechniciansController < ApplicationController
       def index
         ct_id = technicians_params[:contract_id]
-        wk_id = technicians_params[:week_id]
 
-        if ct_id.blank? || wk_id.blank?
+        if ct_id.blank?
           technicians = Technician.all
         else
-          technicians = Technician.candidates(ct_id, wk_id)
+          technicians = Technician.associated(ct_id)
         end
 
         render json: technicians
       end
-      
+
       private
 
       def technicians_params

@@ -6,7 +6,8 @@ module Api
     class Technician < ApplicationRecord
       has_many :availables, foreign_key: 'api_v1_technician_id'
       has_many :allocations, foreign_key: 'api_v1_technician_id'
-
+      has_many :technician_associations, foreign_key: 'api_v1_technician_id'
+      
       # Hash de disponibilidad de todos los Tecnicos para una semana y bloque
       def self.availability_per_block(wk_id, bk_id)
         result = []
@@ -78,13 +79,14 @@ module Api
       def self.candidates(ct_id, wk_id)
         tech_ids = Available.where(api_v1_contract_id: ct_id, api_v1_week_id: wk_id).distinct.pluck(:api_v1_technician_id)
 
-        technicians = []
+        Technician.where(id: tech_ids)
+      end
 
-        tech_ids.each do |tech_id|
-          technicians.push(Technician.find_by(id: tech_id))
-        end
+      # Retorna los Technicians asociados a un contrato a traves de TechnicianAssociation
+      def self.associated(ct_id)
+        tech_ids = TechnicianAssociation.where(api_v1_contract_id: ct_id).pluck(:api_v1_technician_id)
 
-        technicians
+        Technician.where(id: tech_ids)
       end
     end
   end
