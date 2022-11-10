@@ -13,13 +13,20 @@ Rails.application.routes.draw do
       resources :contracts do
         resources :days
         resources :technicians
+        resources :weeks do
+          resources :allocations do
+            post 'generate', on: :collection
+          end
+        end
       end
+
       resources :days do
         resources :blocks
       end
       resources :technicians
       resources :weeks do
         resources :availables
+        resources :allocations
       end
     end
   end

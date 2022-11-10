@@ -16,7 +16,7 @@ module Api
 
         ct_id = availables&.first&.api_v1_contract_id
 
-        techs_list = candidates(ct_id, wk_id)
+        techs_list = associated(ct_id)
 
         techs_list.each do |tech|
           found = availables.find { |a| a[:api_v1_technician_id] == tech.id }

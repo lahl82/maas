@@ -8,10 +8,37 @@ module Api
       belongs_to :week, foreign_key: 'api_v1_week_id'
       belongs_to :technician, foreign_key: 'api_v1_technician_id'
       belongs_to :contract, foreign_key: 'api_v1_contract_id'
+      
+      # Hash de asignaciones de todos los Tecnicos para una semana y bloque
+      def self.allocation_per_block(wk_id, bk_id)
+        result = []
+
+        allocations = Allocation.where(api_v1_week_id: wk_id, api_v1_block_id: bk_id)
+
+        ct_id = allocations&.first&.api_v1_contract_id
+
+        techs_list = Technician.associated(ct_id)
+
+        techs_list.each do |tech|
+          found = allocations.find { |a| a[:api_v1_technician_id] == tech.id }
+
+          if found
+            result.push({ allocation_id: found.id,
+                          block_id: found.api_v1_block_id,
+                          week_id: found.api_v1_week_id,
+                          technician_id: found.api_v1_technician_id,
+                          contract_id: found.api_v1_contract_id })
+          else
+            result.push({})
+          end
+        end
+
+        result
+      end
 
       # Genera las Allocations segun la Availability de cada tecnico
       def self.generate(ct_id, wk_id)
-        contract = Contract.find_by(id: allocation_params.fetch(:contract_id))
+        contract = Contract.find_by(id: ct_id)
 
         requirements = contract.requirement
 
@@ -50,8 +77,11 @@ module Api
 
       def self.allocate_techs(requirements, availabilities, technicians)
         days = days_required(requirements)
-        week_id = availabilities.first[1].first.fetch(:week_id)
-        contract_id = availabilities.first[1].first.fetch(:contract_id)
+
+        if !availabilities.blank?
+          week_id = availabilities&.first[1].first&.fetch(:week_id)
+          contract_id = availabilities&.first[1].first&.fetch(:contract_id)
+        end
 
         allocated = []
 
